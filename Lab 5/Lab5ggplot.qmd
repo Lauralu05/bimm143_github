@@ -1,0 +1,249 @@
+---
+title: "Class 5: Data Viz with ggplot"
+author: "Laura (A17844089)"
+format: pdf 
+---
+
+Today we are exploring the **gggplot** package and how to make nice figures in R. 
+
+There are lots of ways to make figures and plot in R. Theses include: 
+
+- so called "base" R 
+- and add on package like **ggplot2** 
+
+Here is a simple "base" R plot.
+
+
+```{r}
+head(cars)
+```
+
+We can simply pass to to the `plot()` function. 
+```{r}
+plot(cars)
+```
+```{r}
+
+```
+
+Key-point: Base R is quick but not so nice and simple looking in some folks eyes 
+
+Let's see how we can plot this with **ggplot2**... 
+
+1st I need to install this add-on package. For this we use the `install.packages()` function - **WE DO THIS IN THE CONSOLE, NOT our report**. This is a one time only deal. 
+
+2nd We need to load the package with the `library()` function every time we want to use it. 
+
+```{r}
+library(ggplot2)
+ggplot(cars)
+```
+
+
+```{r}
+ggplot(cars)
+``` 
+
+
+Every ggplot is composed of at least 3 layers: 
+
+- **data** (i.e a data.frame with the things you want to plot), 
+- aesthitics **aes()** that map the columns of data to your plot features (i.e aesthitics) 
+- geoms like **geom_point)** that srt how the plot appears 
+
+```{r}
+library(ggplot2)
+ggplot(cars) + 
+  aes(x=speed, y=dist) + 
+  geom_point()
+```
+
+```{r}
+hist(cars$speed)
+```
+
+> Key point: For simple "canned" graphs base R is quicker but as things get more custom and elobrate then ggplot wins out...
+
+
+Let's add more layers to our ggplot 
+
+Add a line showing the relationship between x and y 
+Add a title 
+Add custom axis labels "Speed (MPH)" and "Distance (ft)" 
+Change the theme...
+
+```{r}
+ggplot(cars) + 
+  aes(x=speed, y=dist) + 
+  geom_point() + 
+  geom_smooth(method="lm", se=FALSE) + 
+ labs(title = "Silly plot of Speed vs Stoping distance", 
+      x="Speed (MPH)", 
+      y="Distance (ft)") + 
+  theme_bw()
+```
+
+## Going further 
+
+Read some gene expression data 
+
+```{r}
+url <- "https://bioboot.github.io/bimm143_S20/class-material/up_down_expression.txt"
+genes <- read.delim(url)
+head(genes)
+```
+
+> Q1. How many genes are in this wee dataset? 
+
+```{r}
+nrow(genes) 
+```
+
+
+> Q2. How many "up" regulated genes are there? 
+
+```{r}
+sum( genes$State =="up" ) 
+``` 
+
+A useful function for counting up occurances of things in a vector is the `table()` function. 
+Make a v1 figure 
+
+```{r}
+p <- ggplot(genes) + 
+  aes(x=Condition1,
+      y=Condition2,  
+       col=State) + 
+  geom_point()
+p
+```
+```{r}
+p + 
+ scale_colour_manual( values= c("blue","gray","red") ) + 
+  labs(title= "Expression changes upon drug treatment", 
+       x="Control (no drug)",
+       y= "Treatment (with drug)" ) + 
+    theme_bw() 
+```
+
+
+
+```{r}
+# File location online 
+url <- "https://raw.githubusercontent.com/jennybc/gapminder/master/inst/extdata/gapminder.tsv"
+
+gapminder <- read.delim(url) 
+```
+
+Lets have a wee peak 
+
+```{r} 
+head( gapminder, 3) 
+```
+
+
+> Q4. How many different country values are in this dataset? 
+
+```{r}
+head( gapminder, 3) 
+```
+
+```{r}       
+length( table(gapminder$country) ) 
+```
+
+>Q5. How many different continent values are in the dataset?  
+
+```{r}
+unique(gapminder$continenet) 
+```
+
+```{r}
+ ggplot(gapminder) + 
+  aes(gdpPercap, lifeExp, col=continent) + 
+  geom_point()
+```
+
+```{r}
+ ggplot(gapminder) + 
+  aes(gdpPercap, lifeExp, col=continent, label=country) + geom_point() 
+  geom_point()
+```       
+       
+I can use the **ggrepl** package to make more sensible labels here. 
+
+I want a seperate panel per continent 
+
+```{r}
+ggplot(gapminder) + 
+  aes(gdpPercap, lifeExp, col=continent, label=country) + geom_point() + 
+facet_wrap(~continent) 
+```   
+
+```{r}
+library(ggrepel)
+       
+ggplot(gapminder) + 
+  aes(gdpPercap, lifeExp, col=continent, label=country) + geom_point() 
+```    
+
+The advantages of ggplot over base R plot: 
+Layered system: ggplot builds plots by adding layers (data, aesthetics, geometry, themes, annotations) with the + operator, making it easy to iteratively refine and customize visualizations. Base R requires step-by-step specification, which can be more fiddly and time-consuming to polish
+D1
+D2
+D4
+D5
+D6
+Q2
+.
+Aesthetic mapping: ggplot allows mapping data columns to visual features like position, color, shape, size, and transparency, supporting rich, multi-dimensional plots. Base R is less flexible in this regard
+D1
+D2
+D3
+D5
+D6
+Q1
+Q3
+.
+Themes and annotation: ggplot provides built-in themes and functions for adding titles, subtitles, captions, and custom axis labels, making it easier to standardize and polish figures
+D1
+D2
+D4
+D5
+D6
+Q1
+.
+Faceting: ggplot can split data into multiple panels by categories using facet_wrap, improving clarity for complex or grouped data
+D1
+D2
+D4
+D5
+D6
+Q1
+.
+Variety of plot types: ggplot supports over 40 core geometric types and many more via extensions, making advanced visualizations more accessible
+D1
+D2
+D6
+Q3
+.
+In summary, ggplot is more structured, modular, and user-friendly for creating publication-quality figures, while base R offers complete control but is less convenient for complex or polished visualizations
+D1
+D2
+D4
+D5
+D6
+Q1
+Q2
+Q3
+.
+
+
+
+
+
+
+
+
+
+   
