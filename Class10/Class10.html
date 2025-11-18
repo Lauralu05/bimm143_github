@@ -1,0 +1,1541 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Laura Lu (PID: A17844089)">
+
+<title>Class 10: Halloween Mini Project</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="Class10_files/libs/clipboard/clipboard.min.js"></script>
+<script src="Class10_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="Class10_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="Class10_files/libs/quarto-html/popper.min.js"></script>
+<script src="Class10_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="Class10_files/libs/quarto-html/anchor.min.js"></script>
+<link href="Class10_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="Class10_files/libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="Class10_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="Class10_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="Class10_files/libs/bootstrap/bootstrap-81267100e462c21b3d6c0d5bf76a3417.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="Class10_files/libs/tabwid-1.1.3/tabwid.css" rel="stylesheet">
+<script src="Class10_files/libs/tabwid-1.1.3/tabwid.js"></script>
+
+
+</head>
+
+<body class="quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#data-import" id="toc-data-import" class="nav-link active" data-scroll-target="#data-import">Data Import</a></li>
+  <li><a href="#quick-overview-of-the-dataset" id="toc-quick-overview-of-the-dataset" class="nav-link" data-scroll-target="#quick-overview-of-the-dataset">Quick overview of the dataset</a></li>
+  <li><a href="#overall-candy-rankings" id="toc-overall-candy-rankings" class="nav-link" data-scroll-target="#overall-candy-rankings">Overall Candy Rankings</a></li>
+  <li><a href="#winpercent-and-pricepercent" id="toc-winpercent-and-pricepercent" class="nav-link" data-scroll-target="#winpercent-and-pricepercent">Winpercent and Pricepercent</a></li>
+  <li><a href="#exploring-the-correlation-structure" id="toc-exploring-the-correlation-structure" class="nav-link" data-scroll-target="#exploring-the-correlation-structure">Exploring the correlation structure</a></li>
+  <li><a href="#principal-component-analysis" id="toc-principal-component-analysis" class="nav-link" data-scroll-target="#principal-component-analysis">Principal Component Analysis</a></li>
+  </ul>
+</nav>
+</div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Class 10: Halloween Mini Project</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Laura Lu (PID: A17844089) </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>As it is nearly Halloween and a half way point in the quarter let’s do a mini project to help us figure out the best candy!</p>
+<p>Our come from the 538 website and is available as a CSV file:</p>
+<section id="data-import" class="level2">
+<h2 class="anchored" data-anchor-id="data-import">Data Import</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>candy <span class="ot">&lt;-</span> <span class="fu">read.csv</span>( <span class="st">"candy-data.csv"</span>, <span class="at">row.names =</span> <span class="dv">1</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(candy) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>             chocolate fruity caramel peanutyalmondy nougat crispedricewafer
+100 Grand            1      0       1              0      0                1
+3 Musketeers         1      0       0              0      1                0
+One dime             0      0       0              0      0                0
+One quarter          0      0       0              0      0                0
+Air Heads            0      1       0              0      0                0
+Almond Joy           1      0       0              1      0                0
+             hard bar pluribus sugarpercent pricepercent winpercent
+100 Grand       0   1        0        0.732        0.860   66.97173
+3 Musketeers    0   1        0        0.604        0.511   67.60294
+One dime        0   0        0        0.011        0.116   32.26109
+One quarter     0   0        0        0.011        0.511   46.11650
+Air Heads       0   0        0        0.906        0.511   52.34146
+Almond Joy      0   1        0        0.465        0.767   50.34755</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>flextable<span class="sc">::</span><span class="fu">flextable</span>(<span class="fu">head</span>(candy,<span class="dv">10</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="tabwid"><style>.cl-29d89d7c{}.cl-29ce87e2{font-family:'Helvetica';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-29d2930a{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-29d2b614{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-29d2b61e{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-29d2b61f{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing="true" class="cl-29d89d7c"><thead><tr style="overflow-wrap:break-word;"><th class="cl-29d2b614"><p class="cl-29d2930a"><span class="cl-29ce87e2">chocolate</span></p></th><th class="cl-29d2b614"><p class="cl-29d2930a"><span class="cl-29ce87e2">fruity</span></p></th><th class="cl-29d2b614"><p class="cl-29d2930a"><span class="cl-29ce87e2">caramel</span></p></th><th class="cl-29d2b614"><p class="cl-29d2930a"><span class="cl-29ce87e2">peanutyalmondy</span></p></th><th class="cl-29d2b614"><p class="cl-29d2930a"><span class="cl-29ce87e2">nougat</span></p></th><th class="cl-29d2b614"><p class="cl-29d2930a"><span class="cl-29ce87e2">crispedricewafer</span></p></th><th class="cl-29d2b614"><p class="cl-29d2930a"><span class="cl-29ce87e2">hard</span></p></th><th class="cl-29d2b614"><p class="cl-29d2930a"><span class="cl-29ce87e2">bar</span></p></th><th class="cl-29d2b614"><p class="cl-29d2930a"><span class="cl-29ce87e2">pluribus</span></p></th><th class="cl-29d2b614"><p class="cl-29d2930a"><span class="cl-29ce87e2">sugarpercent</span></p></th><th class="cl-29d2b614"><p class="cl-29d2930a"><span class="cl-29ce87e2">pricepercent</span></p></th><th class="cl-29d2b614"><p class="cl-29d2930a"><span class="cl-29ce87e2">winpercent</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-29d2b61e"><p class="cl-29d2930a"><span class="cl-29ce87e2">1</span></p></td><td class="cl-29d2b61e"><p class="cl-29d2930a"><span class="cl-29ce87e2">0</span></p></td><td class="cl-29d2b61e"><p class="cl-29d2930a"><span class="cl-29ce87e2">1</span></p></td><td class="cl-29d2b61e"><p class="cl-29d2930a"><span class="cl-29ce87e2">0</span></p></td><td class="cl-29d2b61e"><p class="cl-29d2930a"><span class="cl-29ce87e2">0</span></p></td><td class="cl-29d2b61e"><p class="cl-29d2930a"><span class="cl-29ce87e2">1</span></p></td><td class="cl-29d2b61e"><p class="cl-29d2930a"><span class="cl-29ce87e2">0</span></p></td><td class="cl-29d2b61e"><p class="cl-29d2930a"><span class="cl-29ce87e2">1</span></p></td><td class="cl-29d2b61e"><p class="cl-29d2930a"><span class="cl-29ce87e2">0</span></p></td><td class="cl-29d2b61e"><p class="cl-29d2930a"><span class="cl-29ce87e2">0.732</span></p></td><td class="cl-29d2b61e"><p class="cl-29d2930a"><span class="cl-29ce87e2">0.860</span></p></td><td class="cl-29d2b61e"><p class="cl-29d2930a"><span class="cl-29ce87e2">66.97173</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-29d2b61e"><p class="cl-29d2930a"><span class="cl-29ce87e2">1</span></p></td><td class="cl-29d2b61e"><p class="cl-29d2930a"><span class="cl-29ce87e2">0</span></p></td><td class="cl-29d2b61e"><p class="cl-29d2930a"><span class="cl-29ce87e2">0</span></p></td><td class="cl-29d2b61e"><p class="cl-29d2930a"><span class="cl-29ce87e2">0</span></p></td><td class="cl-29d2b61e"><p class="cl-29d2930a"><span class="cl-29ce87e2">1</span></p></td><td class="cl-29d2b61e"><p class="cl-29d2930a"><span class="cl-29ce87e2">0</span></p></td><td class="cl-29d2b61e"><p class="cl-29d2930a"><span class="cl-29ce87e2">0</span></p></td><td class="cl-29d2b61e"><p class="cl-29d2930a"><span class="cl-29ce87e2">1</span></p></td><td class="cl-29d2b61e"><p class="cl-29d2930a"><span class="cl-29ce87e2">0</span></p></td><td class="cl-29d2b61e"><p class="cl-29d2930a"><span class="cl-29ce87e2">0.604</span></p></td><td class="cl-29d2b61e"><p class="cl-29d2930a"><span class="cl-29ce87e2">0.511</span></p></td><td class="cl-29d2b61e"><p class="cl-29d2930a"><span class="cl-29ce87e2">67.60294</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-29d2b61e"><p class="cl-29d2930a"><span class="cl-29ce87e2">0</span></p></td><td class="cl-29d2b61e"><p class="cl-29d2930a"><span class="cl-29ce87e2">0</span></p></td><td class="cl-29d2b61e"><p class="cl-29d2930a"><span class="cl-29ce87e2">0</span></p></td><td class="cl-29d2b61e"><p class="cl-29d2930a"><span class="cl-29ce87e2">0</span></p></td><td class="cl-29d2b61e"><p class="cl-29d2930a"><span class="cl-29ce87e2">0</span></p></td><td class="cl-29d2b61e"><p class="cl-29d2930a"><span class="cl-29ce87e2">0</span></p></td><td class="cl-29d2b61e"><p class="cl-29d2930a"><span class="cl-29ce87e2">0</span></p></td><td class="cl-29d2b61e"><p class="cl-29d2930a"><span class="cl-29ce87e2">0</span></p></td><td class="cl-29d2b61e"><p class="cl-29d2930a"><span class="cl-29ce87e2">0</span></p></td><td class="cl-29d2b61e"><p class="cl-29d2930a"><span class="cl-29ce87e2">0.011</span></p></td><td class="cl-29d2b61e"><p class="cl-29d2930a"><span class="cl-29ce87e2">0.116</span></p></td><td class="cl-29d2b61e"><p class="cl-29d2930a"><span class="cl-29ce87e2">32.26109</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-29d2b61e"><p class="cl-29d2930a"><span class="cl-29ce87e2">0</span></p></td><td class="cl-29d2b61e"><p class="cl-29d2930a"><span class="cl-29ce87e2">0</span></p></td><td class="cl-29d2b61e"><p class="cl-29d2930a"><span class="cl-29ce87e2">0</span></p></td><td class="cl-29d2b61e"><p class="cl-29d2930a"><span class="cl-29ce87e2">0</span></p></td><td class="cl-29d2b61e"><p class="cl-29d2930a"><span class="cl-29ce87e2">0</span></p></td><td class="cl-29d2b61e"><p class="cl-29d2930a"><span class="cl-29ce87e2">0</span></p></td><td class="cl-29d2b61e"><p class="cl-29d2930a"><span class="cl-29ce87e2">0</span></p></td><td class="cl-29d2b61e"><p class="cl-29d2930a"><span class="cl-29ce87e2">0</span></p></td><td class="cl-29d2b61e"><p class="cl-29d2930a"><span class="cl-29ce87e2">0</span></p></td><td class="cl-29d2b61e"><p class="cl-29d2930a"><span class="cl-29ce87e2">0.011</span></p></td><td class="cl-29d2b61e"><p class="cl-29d2930a"><span class="cl-29ce87e2">0.511</span></p></td><td class="cl-29d2b61e"><p class="cl-29d2930a"><span class="cl-29ce87e2">46.11650</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-29d2b61e"><p class="cl-29d2930a"><span class="cl-29ce87e2">0</span></p></td><td class="cl-29d2b61e"><p class="cl-29d2930a"><span class="cl-29ce87e2">1</span></p></td><td class="cl-29d2b61e"><p class="cl-29d2930a"><span class="cl-29ce87e2">0</span></p></td><td class="cl-29d2b61e"><p class="cl-29d2930a"><span class="cl-29ce87e2">0</span></p></td><td class="cl-29d2b61e"><p class="cl-29d2930a"><span class="cl-29ce87e2">0</span></p></td><td class="cl-29d2b61e"><p class="cl-29d2930a"><span class="cl-29ce87e2">0</span></p></td><td class="cl-29d2b61e"><p class="cl-29d2930a"><span class="cl-29ce87e2">0</span></p></td><td class="cl-29d2b61e"><p class="cl-29d2930a"><span class="cl-29ce87e2">0</span></p></td><td class="cl-29d2b61e"><p class="cl-29d2930a"><span class="cl-29ce87e2">0</span></p></td><td class="cl-29d2b61e"><p class="cl-29d2930a"><span class="cl-29ce87e2">0.906</span></p></td><td class="cl-29d2b61e"><p class="cl-29d2930a"><span class="cl-29ce87e2">0.511</span></p></td><td class="cl-29d2b61e"><p class="cl-29d2930a"><span class="cl-29ce87e2">52.34146</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-29d2b61e"><p class="cl-29d2930a"><span class="cl-29ce87e2">1</span></p></td><td class="cl-29d2b61e"><p class="cl-29d2930a"><span class="cl-29ce87e2">0</span></p></td><td class="cl-29d2b61e"><p class="cl-29d2930a"><span class="cl-29ce87e2">0</span></p></td><td class="cl-29d2b61e"><p class="cl-29d2930a"><span class="cl-29ce87e2">1</span></p></td><td class="cl-29d2b61e"><p class="cl-29d2930a"><span class="cl-29ce87e2">0</span></p></td><td class="cl-29d2b61e"><p class="cl-29d2930a"><span class="cl-29ce87e2">0</span></p></td><td class="cl-29d2b61e"><p class="cl-29d2930a"><span class="cl-29ce87e2">0</span></p></td><td class="cl-29d2b61e"><p class="cl-29d2930a"><span class="cl-29ce87e2">1</span></p></td><td class="cl-29d2b61e"><p class="cl-29d2930a"><span class="cl-29ce87e2">0</span></p></td><td class="cl-29d2b61e"><p class="cl-29d2930a"><span class="cl-29ce87e2">0.465</span></p></td><td class="cl-29d2b61e"><p class="cl-29d2930a"><span class="cl-29ce87e2">0.767</span></p></td><td class="cl-29d2b61e"><p class="cl-29d2930a"><span class="cl-29ce87e2">50.34755</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-29d2b61e"><p class="cl-29d2930a"><span class="cl-29ce87e2">1</span></p></td><td class="cl-29d2b61e"><p class="cl-29d2930a"><span class="cl-29ce87e2">0</span></p></td><td class="cl-29d2b61e"><p class="cl-29d2930a"><span class="cl-29ce87e2">1</span></p></td><td class="cl-29d2b61e"><p class="cl-29d2930a"><span class="cl-29ce87e2">1</span></p></td><td class="cl-29d2b61e"><p class="cl-29d2930a"><span class="cl-29ce87e2">1</span></p></td><td class="cl-29d2b61e"><p class="cl-29d2930a"><span class="cl-29ce87e2">0</span></p></td><td class="cl-29d2b61e"><p class="cl-29d2930a"><span class="cl-29ce87e2">0</span></p></td><td class="cl-29d2b61e"><p class="cl-29d2930a"><span class="cl-29ce87e2">1</span></p></td><td class="cl-29d2b61e"><p class="cl-29d2930a"><span class="cl-29ce87e2">0</span></p></td><td class="cl-29d2b61e"><p class="cl-29d2930a"><span class="cl-29ce87e2">0.604</span></p></td><td class="cl-29d2b61e"><p class="cl-29d2930a"><span class="cl-29ce87e2">0.767</span></p></td><td class="cl-29d2b61e"><p class="cl-29d2930a"><span class="cl-29ce87e2">56.91455</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-29d2b61e"><p class="cl-29d2930a"><span class="cl-29ce87e2">0</span></p></td><td class="cl-29d2b61e"><p class="cl-29d2930a"><span class="cl-29ce87e2">0</span></p></td><td class="cl-29d2b61e"><p class="cl-29d2930a"><span class="cl-29ce87e2">0</span></p></td><td class="cl-29d2b61e"><p class="cl-29d2930a"><span class="cl-29ce87e2">1</span></p></td><td class="cl-29d2b61e"><p class="cl-29d2930a"><span class="cl-29ce87e2">0</span></p></td><td class="cl-29d2b61e"><p class="cl-29d2930a"><span class="cl-29ce87e2">0</span></p></td><td class="cl-29d2b61e"><p class="cl-29d2930a"><span class="cl-29ce87e2">0</span></p></td><td class="cl-29d2b61e"><p class="cl-29d2930a"><span class="cl-29ce87e2">0</span></p></td><td class="cl-29d2b61e"><p class="cl-29d2930a"><span class="cl-29ce87e2">1</span></p></td><td class="cl-29d2b61e"><p class="cl-29d2930a"><span class="cl-29ce87e2">0.313</span></p></td><td class="cl-29d2b61e"><p class="cl-29d2930a"><span class="cl-29ce87e2">0.511</span></p></td><td class="cl-29d2b61e"><p class="cl-29d2930a"><span class="cl-29ce87e2">23.41782</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-29d2b61e"><p class="cl-29d2930a"><span class="cl-29ce87e2">0</span></p></td><td class="cl-29d2b61e"><p class="cl-29d2930a"><span class="cl-29ce87e2">0</span></p></td><td class="cl-29d2b61e"><p class="cl-29d2930a"><span class="cl-29ce87e2">0</span></p></td><td class="cl-29d2b61e"><p class="cl-29d2930a"><span class="cl-29ce87e2">0</span></p></td><td class="cl-29d2b61e"><p class="cl-29d2930a"><span class="cl-29ce87e2">0</span></p></td><td class="cl-29d2b61e"><p class="cl-29d2930a"><span class="cl-29ce87e2">0</span></p></td><td class="cl-29d2b61e"><p class="cl-29d2930a"><span class="cl-29ce87e2">0</span></p></td><td class="cl-29d2b61e"><p class="cl-29d2930a"><span class="cl-29ce87e2">0</span></p></td><td class="cl-29d2b61e"><p class="cl-29d2930a"><span class="cl-29ce87e2">1</span></p></td><td class="cl-29d2b61e"><p class="cl-29d2930a"><span class="cl-29ce87e2">0.906</span></p></td><td class="cl-29d2b61e"><p class="cl-29d2930a"><span class="cl-29ce87e2">0.325</span></p></td><td class="cl-29d2b61e"><p class="cl-29d2930a"><span class="cl-29ce87e2">38.01096</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-29d2b61f"><p class="cl-29d2930a"><span class="cl-29ce87e2">0</span></p></td><td class="cl-29d2b61f"><p class="cl-29d2930a"><span class="cl-29ce87e2">1</span></p></td><td class="cl-29d2b61f"><p class="cl-29d2930a"><span class="cl-29ce87e2">1</span></p></td><td class="cl-29d2b61f"><p class="cl-29d2930a"><span class="cl-29ce87e2">0</span></p></td><td class="cl-29d2b61f"><p class="cl-29d2930a"><span class="cl-29ce87e2">0</span></p></td><td class="cl-29d2b61f"><p class="cl-29d2930a"><span class="cl-29ce87e2">0</span></p></td><td class="cl-29d2b61f"><p class="cl-29d2930a"><span class="cl-29ce87e2">0</span></p></td><td class="cl-29d2b61f"><p class="cl-29d2930a"><span class="cl-29ce87e2">0</span></p></td><td class="cl-29d2b61f"><p class="cl-29d2930a"><span class="cl-29ce87e2">0</span></p></td><td class="cl-29d2b61f"><p class="cl-29d2930a"><span class="cl-29ce87e2">0.604</span></p></td><td class="cl-29d2b61f"><p class="cl-29d2930a"><span class="cl-29ce87e2">0.325</span></p></td><td class="cl-29d2b61f"><p class="cl-29d2930a"><span class="cl-29ce87e2">34.51768</span></p></td></tr></tbody></table></div>
+</div>
+</div>
+<blockquote class="blockquote">
+<p>Q1. How many different candy types are in this dataset?</p>
+</blockquote>
+<p>There are 6 different candy types.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.4     ✔ readr     2.1.5
+✔ forcats   1.0.1     ✔ stringr   1.5.2
+✔ ggplot2   4.0.0     ✔ tibble    3.3.0
+✔ lubridate 1.9.4     ✔ tidyr     1.3.1
+✔ purrr     1.1.0     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>candy <span class="sc">%&gt;%</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nrow</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 85</code></pre>
+</div>
+</div>
+<blockquote class="blockquote">
+<p>Q2. how many druity candy types are in the dataset?</p>
+</blockquote>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(candy<span class="sc">$</span>fruity)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 38</code></pre>
+</div>
+</div>
+<p>My favorite winpercent</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a> candy[<span class="st">"Twix"</span>,]<span class="sc">$</span>winpercent </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 81.64291</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr) </span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>candy <span class="sc">|&gt;</span> </span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">rownames</span>(candy)<span class="sc">==</span><span class="st">"Almond Joy"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(winpercent)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>           winpercent
+Almond Joy   50.34755</code></pre>
+</div>
+</div>
+</section>
+<section id="quick-overview-of-the-dataset" class="level2">
+<h2 class="anchored" data-anchor-id="quick-overview-of-the-dataset">Quick overview of the dataset</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(skimr) </span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="fu">skim</span>(candy) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Data summary</caption>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Name</td>
+<td style="text-align: left;">candy</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Number of rows</td>
+<td style="text-align: left;">85</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Number of columns</td>
+<td style="text-align: left;">12</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">_______________________</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Column type frequency:</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">numeric</td>
+<td style="text-align: left;">12</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">________________________</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Group variables</td>
+<td style="text-align: left;">None</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variable type: numeric</strong></p>
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 19%">
+<col style="width: 11%">
+<col style="width: 15%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">skim_variable</th>
+<th style="text-align: right;">n_missing</th>
+<th style="text-align: right;">complete_rate</th>
+<th style="text-align: right;">mean</th>
+<th style="text-align: right;">sd</th>
+<th style="text-align: right;">p0</th>
+<th style="text-align: right;">p25</th>
+<th style="text-align: right;">p50</th>
+<th style="text-align: right;">p75</th>
+<th style="text-align: right;">p100</th>
+<th style="text-align: left;">hist</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">chocolate</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.44</td>
+<td style="text-align: right;">0.50</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: left;">▇▁▁▁▆</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">fruity</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.45</td>
+<td style="text-align: right;">0.50</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: left;">▇▁▁▁▆</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">caramel</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.16</td>
+<td style="text-align: right;">0.37</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: left;">▇▁▁▁▂</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">peanutyalmondy</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.16</td>
+<td style="text-align: right;">0.37</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: left;">▇▁▁▁▂</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">nougat</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.08</td>
+<td style="text-align: right;">0.28</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: left;">▇▁▁▁▁</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">crispedricewafer</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.08</td>
+<td style="text-align: right;">0.28</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: left;">▇▁▁▁▁</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">hard</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.18</td>
+<td style="text-align: right;">0.38</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: left;">▇▁▁▁▂</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">bar</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.25</td>
+<td style="text-align: right;">0.43</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: left;">▇▁▁▁▂</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">pluribus</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.52</td>
+<td style="text-align: right;">0.50</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: left;">▇▁▁▁▇</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">sugarpercent</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.48</td>
+<td style="text-align: right;">0.28</td>
+<td style="text-align: right;">0.01</td>
+<td style="text-align: right;">0.22</td>
+<td style="text-align: right;">0.47</td>
+<td style="text-align: right;">0.73</td>
+<td style="text-align: right;">0.99</td>
+<td style="text-align: left;">▇▇▇▇▆</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">pricepercent</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.47</td>
+<td style="text-align: right;">0.29</td>
+<td style="text-align: right;">0.01</td>
+<td style="text-align: right;">0.26</td>
+<td style="text-align: right;">0.47</td>
+<td style="text-align: right;">0.65</td>
+<td style="text-align: right;">0.98</td>
+<td style="text-align: left;">▇▇▇▇▆</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">winpercent</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">50.32</td>
+<td style="text-align: right;">14.71</td>
+<td style="text-align: right;">22.45</td>
+<td style="text-align: right;">39.14</td>
+<td style="text-align: right;">47.83</td>
+<td style="text-align: right;">59.86</td>
+<td style="text-align: right;">84.18</td>
+<td style="text-align: left;">▃▇▆▅▂</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>skimr<span class="sc">::</span><span class="fu">skim</span>(candy)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Data summary</caption>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Name</td>
+<td style="text-align: left;">candy</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Number of rows</td>
+<td style="text-align: left;">85</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Number of columns</td>
+<td style="text-align: left;">12</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">_______________________</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Column type frequency:</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">numeric</td>
+<td style="text-align: left;">12</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">________________________</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Group variables</td>
+<td style="text-align: left;">None</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variable type: numeric</strong></p>
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 19%">
+<col style="width: 11%">
+<col style="width: 15%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">skim_variable</th>
+<th style="text-align: right;">n_missing</th>
+<th style="text-align: right;">complete_rate</th>
+<th style="text-align: right;">mean</th>
+<th style="text-align: right;">sd</th>
+<th style="text-align: right;">p0</th>
+<th style="text-align: right;">p25</th>
+<th style="text-align: right;">p50</th>
+<th style="text-align: right;">p75</th>
+<th style="text-align: right;">p100</th>
+<th style="text-align: left;">hist</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">chocolate</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.44</td>
+<td style="text-align: right;">0.50</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: left;">▇▁▁▁▆</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">fruity</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.45</td>
+<td style="text-align: right;">0.50</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: left;">▇▁▁▁▆</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">caramel</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.16</td>
+<td style="text-align: right;">0.37</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: left;">▇▁▁▁▂</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">peanutyalmondy</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.16</td>
+<td style="text-align: right;">0.37</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: left;">▇▁▁▁▂</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">nougat</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.08</td>
+<td style="text-align: right;">0.28</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: left;">▇▁▁▁▁</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">crispedricewafer</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.08</td>
+<td style="text-align: right;">0.28</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: left;">▇▁▁▁▁</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">hard</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.18</td>
+<td style="text-align: right;">0.38</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: left;">▇▁▁▁▂</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">bar</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.25</td>
+<td style="text-align: right;">0.43</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: left;">▇▁▁▁▂</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">pluribus</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.52</td>
+<td style="text-align: right;">0.50</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: left;">▇▁▁▁▇</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">sugarpercent</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.48</td>
+<td style="text-align: right;">0.28</td>
+<td style="text-align: right;">0.01</td>
+<td style="text-align: right;">0.22</td>
+<td style="text-align: right;">0.47</td>
+<td style="text-align: right;">0.73</td>
+<td style="text-align: right;">0.99</td>
+<td style="text-align: left;">▇▇▇▇▆</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">pricepercent</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.47</td>
+<td style="text-align: right;">0.29</td>
+<td style="text-align: right;">0.01</td>
+<td style="text-align: right;">0.26</td>
+<td style="text-align: right;">0.47</td>
+<td style="text-align: right;">0.65</td>
+<td style="text-align: right;">0.98</td>
+<td style="text-align: left;">▇▇▇▇▆</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">winpercent</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">50.32</td>
+<td style="text-align: right;">14.71</td>
+<td style="text-align: right;">22.45</td>
+<td style="text-align: right;">39.14</td>
+<td style="text-align: right;">47.83</td>
+<td style="text-align: right;">59.86</td>
+<td style="text-align: right;">84.18</td>
+<td style="text-align: left;">▃▇▆▅▂</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<blockquote class="blockquote">
+<p>Q6. Is there any variable/column that looks to be on a different scale tothe majority of the other columns in the dataset?</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Q7. What do you think a zero and one represent for the candy$chocolate column?</p>
+</blockquote>
+<p>That the candy does not contain chocolate.</p>
+<blockquote class="blockquote">
+<p>Q8. Plot a histogram of winpercent values</p>
+</blockquote>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(candy) <span class="sc">+</span> </span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(winpercent) <span class="sc">+</span> </span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins=</span><span class="dv">20</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Class10_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<blockquote class="blockquote">
+<p>Q9. Is the distribution of winpercent values symmetrical?</p>
+</blockquote>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(candy) <span class="sc">+</span> </span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(winpercent) <span class="sc">+</span> </span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Class10_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<blockquote class="blockquote">
+<p>Q10. Is the center of the distribution above or below 50%?</p>
+</blockquote>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(candy<span class="sc">$</span>winpercent)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 50.31676</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(candy<span class="sc">$</span>winpercent)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  22.45   39.14   47.83   50.32   59.86   84.18 </code></pre>
+</div>
+</div>
+<blockquote class="blockquote">
+<p>Q11. On average is chocolate candy higher or lower ranked than fruit candy?</p>
+</blockquote>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Find all chocolate candy in the dataset </span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Find their winpercent values </span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Calculate the mean of these values </span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 4-6. Do the same for fruity candy </span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 7. Compare mean winpercents of chocolate vs fruity </span></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 8. Pick the highest as the winner </span></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>choc.inds <span class="ot">&lt;-</span> candy<span class="sc">$</span>chocolate<span class="sc">==</span><span class="dv">1</span></span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>choc.win <span class="ot">&lt;-</span> candy[choc.inds, ]<span class="sc">$</span>winpercent </span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>choc.mean <span class="ot">&lt;-</span> <span class="fu">mean</span>(choc.win) </span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>choc.mean </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 60.92153</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(candy[candy<span class="sc">$</span>chocolate<span class="sc">==</span><span class="dv">1</span>,]<span class="sc">$</span>winpercent)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 60.92153</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(candy[candy<span class="sc">$</span>fruity<span class="sc">==</span><span class="dv">1</span>,]<span class="sc">$</span>winpercent)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 44.11974</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>fruit.ind <span class="ot">&lt;-</span> candy<span class="sc">$</span>fruity<span class="sc">==</span><span class="dv">1</span> </span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>fruit.win <span class="ot">&lt;-</span> candy[fruit.ind,]<span class="sc">$</span>winpercent </span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>fruit.mean <span class="ot">&lt;-</span> <span class="fu">mean</span>(fruit.win) </span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>fruit.mean </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 44.11974</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>candy <span class="sc">|&gt;</span> </span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(chocolate<span class="sc">==</span><span class="dv">1</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(winpercent) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                            winpercent
+100 Grand                     66.97173
+3 Musketeers                  67.60294
+Almond Joy                    50.34755
+Baby Ruth                     56.91455
+Charleston Chew               38.97504
+Hershey's Kisses              55.37545
+Hershey's Krackel             62.28448
+Hershey's Milk Chocolate      56.49050
+Hershey's Special Dark        59.23612
+Junior Mints                  57.21925
+Kit Kat                       76.76860
+Peanut butter M&amp;M's           71.46505
+M&amp;M's                         66.57458
+Milk Duds                     55.06407
+Milky Way                     73.09956
+Milky Way Midnight            60.80070
+Milky Way Simply Caramel      64.35334
+Mounds                        47.82975
+Mr Good Bar                   54.52645
+Nestle Butterfinger           70.73564
+Nestle Crunch                 66.47068
+Peanut M&amp;Ms                   69.48379
+Reese's Miniatures            81.86626
+Reese's Peanut Butter cup     84.18029
+Reese's pieces                73.43499
+Reese's stuffed with pieces   72.88790
+Rolo                          65.71629
+Sixlets                       34.72200
+Nestle Smarties               37.88719
+Snickers                      76.67378
+Snickers Crisper              59.52925
+Tootsie Pop                   48.98265
+Tootsie Roll Juniors          43.06890
+Tootsie Roll Midgies          45.73675
+Tootsie Roll Snack Bars       49.65350
+Twix                          81.64291
+Whoppers                      49.52411</code></pre>
+</div>
+</div>
+<blockquote class="blockquote">
+<p>Q12. Is this difference statistically significant?</p>
+</blockquote>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(choc.win, fruit.win ) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Welch Two Sample t-test
+
+data:  choc.win and fruit.win
+t = 6.2582, df = 68.882, p-value = 2.871e-08
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ 11.44563 22.15795
+sample estimates:
+mean of x mean of y 
+ 60.92153  44.11974 </code></pre>
+</div>
+</div>
+</section>
+<section id="overall-candy-rankings" class="level2">
+<h2 class="anchored" data-anchor-id="overall-candy-rankings">Overall Candy Rankings</h2>
+<blockquote class="blockquote">
+<p>Q13. What are the five least liked candy types in this set?</p>
+</blockquote>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>candy <span class="sc">|&gt;</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(winpercent) <span class="sc">|&gt;</span></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                   chocolate fruity caramel peanutyalmondy nougat
+Nik L Nip                  0      1       0              0      0
+Boston Baked Beans         0      0       0              1      0
+Chiclets                   0      1       0              0      0
+Super Bubble               0      1       0              0      0
+Jawbusters                 0      1       0              0      0
+                   crispedricewafer hard bar pluribus sugarpercent pricepercent
+Nik L Nip                         0    0   0        1        0.197        0.976
+Boston Baked Beans                0    0   0        1        0.313        0.511
+Chiclets                          0    0   0        1        0.046        0.325
+Super Bubble                      0    0   0        0        0.162        0.116
+Jawbusters                        0    1   0        1        0.093        0.511
+                   winpercent
+Nik L Nip            22.44534
+Boston Baked Beans   23.41782
+Chiclets             24.52499
+Super Bubble         27.30386
+Jawbusters           28.12744</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">5</span>,<span class="dv">1</span>,<span class="dv">10</span>,<span class="dv">4</span>) </span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="co">#sort(x)</span></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="fu">order</span>(x) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2 4 1 3</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co">#(candy$winpercent)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>ord.ind <span class="ot">&lt;-</span> <span class="fu">order</span>( candy<span class="sc">$</span>winpercent ) </span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>( candy[ord.ind,], <span class="dv">5</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                   chocolate fruity caramel peanutyalmondy nougat
+Nik L Nip                  0      1       0              0      0
+Boston Baked Beans         0      0       0              1      0
+Chiclets                   0      1       0              0      0
+Super Bubble               0      1       0              0      0
+Jawbusters                 0      1       0              0      0
+                   crispedricewafer hard bar pluribus sugarpercent pricepercent
+Nik L Nip                         0    0   0        1        0.197        0.976
+Boston Baked Beans                0    0   0        1        0.313        0.511
+Chiclets                          0    0   0        1        0.046        0.325
+Super Bubble                      0    0   0        0        0.162        0.116
+Jawbusters                        0    1   0        1        0.093        0.511
+                   winpercent
+Nik L Nip            22.44534
+Boston Baked Beans   23.41782
+Chiclets             24.52499
+Super Bubble         27.30386
+Jawbusters           28.12744</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>candy <span class="sc">|&gt;</span> </span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="sc">-</span>winpercent) <span class="sc">|&gt;</span> </span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">5</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                          chocolate fruity caramel peanutyalmondy nougat
+Reese's Peanut Butter cup         1      0       0              1      0
+Reese's Miniatures                1      0       0              1      0
+Twix                              1      0       1              0      0
+Kit Kat                           1      0       0              0      0
+Snickers                          1      0       1              1      1
+                          crispedricewafer hard bar pluribus sugarpercent
+Reese's Peanut Butter cup                0    0   0        0        0.720
+Reese's Miniatures                       0    0   0        0        0.034
+Twix                                     1    0   1        0        0.546
+Kit Kat                                  1    0   1        0        0.313
+Snickers                                 0    0   1        0        0.546
+                          pricepercent winpercent
+Reese's Peanut Butter cup        0.651   84.18029
+Reese's Miniatures               0.279   81.86626
+Twix                             0.906   81.64291
+Kit Kat                          0.511   76.76860
+Snickers                         0.651   76.67378</code></pre>
+</div>
+</div>
+<blockquote class="blockquote">
+<p>Q15. Make a first barplot of candy ranking based on winpercent values.</p>
+</blockquote>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(candy) <span class="sc">+</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(winpercent, <span class="fu">rownames</span>(candy)) <span class="sc">+</span> </span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Class10_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<blockquote class="blockquote">
+<p>Q16. This is quite ugly, use the reorder() function to get the bars sorted by winpercent?</p>
+</blockquote>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(candy) <span class="sc">+</span> </span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x=</span>winpercent,</span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>      <span class="at">y=</span><span class="fu">reorder</span>(<span class="fu">rownames</span>(candy), winpercent)) <span class="sc">+</span> </span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Class10_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Add some color based on the “type of candy”</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>my_cols <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="st">"black"</span>, <span class="fu">nrow</span>(candy))</span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>my_cols[<span class="fu">as.logical</span>(candy<span class="sc">$</span>chocolate)] <span class="ot">&lt;-</span> <span class="st">"chocolate"</span></span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>my_cols[<span class="fu">as.logical</span>(candy<span class="sc">$</span>fruity)] <span class="ot">&lt;-</span> <span class="st">"pink"</span> </span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>my_cols[<span class="fu">as.logical</span>(candy<span class="sc">$</span>bar)] <span class="ot">&lt;-</span> <span class="st">"purple"</span> </span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>my_cols </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "purple"    "purple"    "black"     "black"     "pink"      "purple"   
+ [7] "purple"    "black"     "black"     "pink"      "purple"    "pink"     
+[13] "pink"      "pink"      "pink"      "pink"      "pink"      "pink"     
+[19] "pink"      "black"     "pink"      "pink"      "chocolate" "purple"   
+[25] "purple"    "purple"    "pink"      "chocolate" "purple"    "pink"     
+[31] "pink"      "pink"      "chocolate" "chocolate" "pink"      "chocolate"
+[37] "purple"    "purple"    "purple"    "purple"    "purple"    "pink"     
+[43] "purple"    "purple"    "pink"      "pink"      "purple"    "chocolate"
+[49] "black"     "pink"      "pink"      "chocolate" "chocolate" "chocolate"
+[55] "chocolate" "pink"      "chocolate" "black"     "pink"      "chocolate"
+[61] "pink"      "pink"      "chocolate" "pink"      "purple"    "purple"   
+[67] "pink"      "pink"      "pink"      "pink"      "black"     "black"    
+[73] "pink"      "pink"      "pink"      "chocolate" "chocolate" "purple"   
+[79] "pink"      "purple"    "pink"      "pink"      "pink"      "black"    
+[85] "chocolate"</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(candy) <span class="sc">+</span> </span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x=</span>winpercent,</span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>      <span class="at">y=</span><span class="fu">reorder</span>(<span class="fu">rownames</span>(candy), winpercent)) <span class="sc">+</span> </span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill=</span>my_cols) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Class10_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="winpercent-and-pricepercent" class="level2">
+<h2 class="anchored" data-anchor-id="winpercent-and-pricepercent">Winpercent and Pricepercent</h2>
+<p>A plot with both variables/columns winpercent and pricepercent</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>my_cols[<span class="fu">as.logical</span>(candy<span class="sc">$</span>fruity)]  <span class="ot">&lt;-</span> <span class="st">"red"</span></span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(candy) <span class="sc">+</span> </span>
+<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x=</span>winpercent, </span>
+<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">y=</span>pricepercent, </span>
+<span id="cb48-7"><a href="#cb48-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">label=</span><span class="fu">rownames</span>(candy)) <span class="sc">+</span> </span>
+<span id="cb48-8"><a href="#cb48-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color=</span>my_cols) <span class="sc">+</span> </span>
+<span id="cb48-9"><a href="#cb48-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Class10_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggrepel) </span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(candy) <span class="sc">+</span> </span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x=</span>winpercent, </span>
+<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">y=</span>pricepercent, </span>
+<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">label=</span><span class="fu">rownames</span>(candy)) <span class="sc">+</span> </span>
+<span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color=</span>my_cols) <span class="sc">+</span> </span>
+<span id="cb49-9"><a href="#cb49-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text_repel</span>(<span class="at">max.overlaps =</span> <span class="dv">7</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: ggrepel: 45 unlabeled data points (too many overlaps). Consider
+increasing max.overlaps</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Class10_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="exploring-the-correlation-structure" class="level2">
+<h2 class="anchored" data-anchor-id="exploring-the-correlation-structure">Exploring the correlation structure</h2>
+<p>Now that we’ve explored the dataset a little, we’ll see how the variables interact with one another. We’ll use correlation and view the results with the corrplot package to plot a correlation matrix.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(corrplot) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>corrplot 0.95 loaded</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>cij <span class="ot">&lt;-</span> <span class="fu">cor</span>(candy)</span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a><span class="fu">corrplot</span>(cij) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Class10_files/figure-html/unnamed-chunk-28-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="principal-component-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="principal-component-analysis">Principal Component Analysis</h2>
+<p>The function to use is called <code>prcomp()</code> with an optional <code>scale=T/F</code> argument.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>pca <span class="ot">&lt;-</span> <span class="fu">prcomp</span>(candy, <span class="at">scale=</span><span class="cn">TRUE</span>) </span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(pca)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Importance of components:
+                          PC1    PC2    PC3     PC4    PC5     PC6     PC7
+Standard deviation     2.0788 1.1378 1.1092 1.07533 0.9518 0.81923 0.81530
+Proportion of Variance 0.3601 0.1079 0.1025 0.09636 0.0755 0.05593 0.05539
+Cumulative Proportion  0.3601 0.4680 0.5705 0.66688 0.7424 0.79830 0.85369
+                           PC8     PC9    PC10    PC11    PC12
+Standard deviation     0.74530 0.67824 0.62349 0.43974 0.39760
+Proportion of Variance 0.04629 0.03833 0.03239 0.01611 0.01317
+Cumulative Proportion  0.89998 0.93832 0.97071 0.98683 1.00000</code></pre>
+</div>
+</div>
+<p>Our main PCA result figure</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(pca<span class="sc">$</span>x) <span class="sc">+</span> </span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(PC1, PC2, <span class="at">label=</span><span class="fu">rownames</span>(pca<span class="sc">$</span>x)) <span class="sc">+</span> </span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">col=</span>my_cols)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Class10_files/figure-html/unnamed-chunk-30-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text_repel</span>(<span class="at">col=</span>my_cols) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>geom_text_repel: parse = FALSE, na.rm = FALSE, box.padding = 0.25, point.padding = 1e-06, min.segment.length = 0.5, arrow = NULL, force = 1, force_pull = 1, max.time = 0.5, max.iter = 10000, max.overlaps = 10, nudge_x = 0, nudge_y = 0, xlim = c(NA, NA), ylim = c(NA, NA), direction = both, seed = NA, verbose = FALSE
+stat_identity: na.rm = FALSE
+position_identity </code></pre>
+</div>
+</div>
+<p>We should also examine the variable “loadings” or contributions of the original variables to the new PCs</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(pca<span class="sc">$</span>rotation) <span class="sc">+</span> </span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(PC1, <span class="fu">rownames</span>(pca<span class="sc">$</span>rotation)) <span class="sc">+</span> </span>
+<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Class10_files/figure-html/unnamed-chunk-31-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(pca<span class="sc">$</span>x) <span class="sc">+</span> </span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(PC1, PC2, <span class="at">label=</span><span class="fu">rownames</span>(pca<span class="sc">$</span>x)) <span class="sc">+</span> </span>
+<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">col=</span>my_cols) <span class="sc">+</span> </span>
+<span id="cb60-4"><a href="#cb60-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text_repel</span>(<span class="at">col=</span>my_cols) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Interactive plots that can be zoomed on and “brushed” over can be made wit the *ploty** package. It’s output is interactive and will not render to PDF</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(plotly) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'plotly'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'package:ggplot2':
+
+    last_plot</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'package:stats':
+
+    filter</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'package:graphics':
+
+    layout</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="co">#plotly(p)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
