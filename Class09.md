@@ -184,7 +184,7 @@ hiv <- read.pdb("1hsg")
       Note: Accessing on-line PDB file
 
     Warning in get.pdb(file, path = tempdir(), verbose = FALSE):
-    /var/folders/jd/9031898564z2k2xvgkt_58gw0000gn/T//RtmpFm9kv2/1hsg.pdb exists.
+    /var/folders/jd/9031898564z2k2xvgkt_58gw0000gn/T//RtmpiaPXM4/1hsg.pdb exists.
     Skipping download
 
 ``` r
@@ -284,7 +284,7 @@ library(bio3dview)
 view.pdb(hiv) 
 ```
 
-    file:////private/var/folders/jd/9031898564z2k2xvgkt_58gw0000gn/T/RtmpFm9kv2/file1060a7b703c07/widget1060a5752ee1.html screenshot completed
+    file:////private/var/folders/jd/9031898564z2k2xvgkt_58gw0000gn/T/RtmpiaPXM4/file146cc79b55df5/widget146cc722bbe3f.html screenshot completed
 
 ![](Class09_files/figure-commonmark/unnamed-chunk-15-1.png)
 
@@ -300,7 +300,7 @@ view.pdb(hiv, highlight = sel,
          backgroundColor = "pink")
 ```
 
-    file:////private/var/folders/jd/9031898564z2k2xvgkt_58gw0000gn/T/RtmpFm9kv2/file1060aa8eaddd/widget1060a1d388d95.html screenshot completed
+    file:////private/var/folders/jd/9031898564z2k2xvgkt_58gw0000gn/T/RtmpiaPXM4/file146cc76bba882/widget146cc1a342bb4.html screenshot completed
 
 ![](Class09_files/figure-commonmark/unnamed-chunk-16-1.png)
 
@@ -347,8 +347,8 @@ adk
 m <- nma(adk) 
 ```
 
-     Building Hessian...        Done in 0.072 seconds.
-     Diagonalizing Hessian...   Done in 0.44 seconds.
+     Building Hessian...        Done in 0.078 seconds.
+     Diagonalizing Hessian...   Done in 0.998 seconds.
 
 ``` r
 plot(m) 
