@@ -16,4 +16,4 @@ Classwork for [BIMM143 at UC San Diego](https://bioboot.github.io/bimm143_F25/).
 - Class 16 No Lab Report Due 
 - Class 17 [Lab Session](class17.md)
 - Class 18 Thanksgiving
-- Class 19 [Pertussis Mini Project]
+- Class 19 [Pertussis Mini Project](Class19.md)
